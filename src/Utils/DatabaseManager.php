@@ -50,7 +50,7 @@ class DatabaseManager
         } catch (Exception $e) {
             return $this->response($e->getMessage());
         }
-        return $this->response(trans('installer_messages.final.finished'), 'success');
+        return $this->response(trans('installer::installer_messages.final.finished'), 'success');
     }
 
     /**

@@ -48,9 +48,20 @@ class EnvironmentController extends Controller
      */
     public function store(UpdateRequest $request): RedirectResponse
     {
-        $message = $this->environmentManager->saveFile($request);
-        return redirect(route('Installer::requirements'))
-            ->with('message', $message);
+        try {
+            $this->environmentManager->saveFile($request);
+            return redirect(route('Installer::requirements'))
+                ->with('message',[
+                    'status' => 'success',
+                    'message' => trans('installer::messages.environment.success')
+                ]);
+        } catch (\Exception $exception) {
+            return back()
+                ->with('message',[
+                    'status' => 'error',
+                    'message' => $exception->getMessage()
+                ]);
+        }
 
     }
 

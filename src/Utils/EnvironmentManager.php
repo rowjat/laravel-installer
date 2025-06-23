@@ -6,6 +6,7 @@ use Exception;
 use Illuminate\Http\Request;
 use PDO;
 use PDOException;
+use PHPUnit\Event\RuntimeException;
 
 class EnvironmentManager
 {
@@ -50,13 +51,9 @@ class EnvironmentManager
      * Save the edited content to the file.
      *
      * @param Request $input
-     * @return array
      */
-    public function saveFile(Request $input): array
+    public function saveFile(Request $input): void
     {
-
-        trans('messages.environment.success');
-
         $env = $this->getEnvContent();
         $dbName = $input->get('database');
         $dbHost = $input->get('hostname');
@@ -92,17 +89,13 @@ APP_URL="' . request()->getSchemeAndHttpHost() . '"
             $_SESSION['db_name'] = $dbName;
             $_SESSION['db_host'] = $dbHost;
             $_SESSION['db_success'] = true;
-            $message = 'Database settings correct';
-
             try {
                 file_put_contents($this->envPath, $env);
             } catch (Exception) {
-                $message = trans('messages.environment.errors');
+                throw new RuntimeException(trans('installer::messages.environment.errors'));
             }
-            return Utils::redirect(route('Installer::requirements'), $message);
-
         } catch (PDOException|Exception $e) {
-            return Utils::error('DB Error: ' . $e->getMessage());
+            throw new RuntimeException('DB Error: ' . $e->getMessage());
         }
     }
 }

@@ -1,9 +1,9 @@
 @extends('installer::layouts.master')
 
-@section('title', trans('installer_messages.permissions.title'))
+@section('title', trans('installer::installer_messages.permissions.title'))
 @section('container')
     @if (isset($permissions['errors']))
-        <div class="alert alert-danger">Please fix the below error and the click  {{ trans('installer_messages.checkPermissionAgain') }}</div>
+        <div class="alert alert-danger">Please fix the below error and the click  {{ trans('installer::installer_messages.checkPermissionAgain') }}</div>
     @endif
     <ul class="list-group">
         @foreach($permissions['permissions'] as $permission)
@@ -33,11 +33,11 @@
     <div class="text-center mt-4">
         @if ( ! isset($permissions['errors']))
             <a class="btn btn-sm btn-primary" href="{{ route('Installer::database') }}">
-                {{ trans('installer_messages.next') }}
+                {{ trans('installer::installer_messages.next') }}
             </a>
         @else
             <a class="btn btn-sm btn-primary" href="javascript:window.location.href='';">
-                {{ trans('installer_messages.checkPermissionAgain') }}
+                {{ trans('installer::installer_messages.checkPermissionAgain') }}
             </a>
         @endif
     </div>

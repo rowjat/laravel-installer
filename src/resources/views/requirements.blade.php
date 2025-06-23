@@ -1,6 +1,6 @@
 @extends('installer::layouts.master')
 
-@section('title', trans('installer_messages.requirements.title'))
+@section('title', trans('installer::installer_messages.requirements.title'))
 @section('container')
     <ul class="list-group">
         <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -43,7 +43,7 @@
     @if ( ! isset($requirements['errors']) && $phpSupportInfo['supported'] == 'success')
         <div class="text-center mt-4">
             <a class="btn btn-sm btn-primary" href="{{ route('Installer::permissions') }}">
-                {{ trans('installer_messages.next') }}
+                {{ trans('installer::installer_messages.next') }}
             </a>
         </div>
     @endif

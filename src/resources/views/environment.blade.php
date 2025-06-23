@@ -1,7 +1,13 @@
 @extends('installer::layouts.master')
 
-@section('title', trans('installer_messages.environment.title'))
+@section('title', trans('installer::installer_messages.environment.title'))
 @section('container')
+    @if(session()->has('message'))
+        <div class="alert alert-{{ session('message')['status'] }} alert-dismissible fade show" role="alert">
+            {{ session('message')['message'] }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
     <form method="post" class="" action="{{ route('Installer::environment.store') }}" >
         @csrf
         <div class="mb-3">
@@ -22,8 +28,9 @@
         </div>
         <div class="text-center">
             <button class="btn btn-sm btn-primary"  >
-                {{ trans('installer_messages.next') }}
+                {{ trans('installer::installer_messages.next') }}
             </button>
         </div>
     </form>
+
 @stop

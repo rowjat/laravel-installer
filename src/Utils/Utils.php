@@ -93,8 +93,7 @@ class Utils
      */
     private static function getTranslated($message): mixed
     {
-        $trans = trans($message);
-
+        $trans = trans("installer::$message");
         if ($trans == $message) {
             return $message;
         } else {
