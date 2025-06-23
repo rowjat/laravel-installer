@@ -2,10 +2,8 @@
 
 @section('title', trans('installer::installer_messages.permissions.title'))
 @section('container')
-    @if (isset($permissions['errors']))
-        <div class="alert alert-danger">Please fix the below error and the click  {{ trans('installer::installer_messages.checkPermissionAgain') }}</div>
-    @endif
-    <ul class="list-group">
+    <p class="text-center mb-4">The installer needs to check if the following folders have the correct permissions.</p>
+    <ul class="list-group mb-4">
         @foreach($permissions['permissions'] as $permission)
         <li class="list-group-item position-relative">
            <span> {{ $permission['folder'] }}</span>
@@ -29,8 +27,31 @@
         @endforeach
     </ul>
 
+    <div class="status-message">
+        @if (isset($permissions['errors']))
+            <div class="alert alert-danger">
+                Some folders don't have the required permissions. Please fix the issues before proceeding.
+            </div>
+        @else
+            <div class="alert alert-success">
+                All folder permissions are correct! You can proceed to the next step.
+            </div>
+        @endif
+    </div>
 
+    @if (isset($permissions['errors']))
+        <div class="terminal-command">
+            <h5 class="text-muted">Terminal Command</h5>
+            <span class="mb-1">If you have terminal access, run the following command on terminal</span>
+            <p style="background: #f7f7f9;padding: 10px; border-radius: 4px; font-family: monospace;">
+                chmod -R 775 storage/app/ storage/framework/ storage/logs/ bootstrap/cache/
+            </p>
+        </div>
+    @endif
     <div class="text-center mt-4">
+{{--        <ul class="hide">--}}
+{{--            <ol>Please wait a few moments as the application prepares for you. This may take a minute or two depending on your server configuration.</ol>--}}
+{{--        </ul>--}}
         @if ( ! isset($permissions['errors']))
             <a class="btn btn-sm btn-primary" href="{{ route('Installer::database') }}">
                 {{ trans('installer::installer_messages.next') }}

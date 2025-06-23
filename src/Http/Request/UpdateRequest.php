@@ -26,8 +26,11 @@ class UpdateRequest extends CoreRequest
         return [
             'hostname' => 'required',
             'username' => 'required',
-            'database' => 'required',
+            'database' => ['required',function ($attribute, $value, $fail) {
+                if (in_array($value, ['mysql', 'mariadb', 'pgsql', 'sqlsrv', 'sqlite','sos','performance_schema', 'information_schema'])) {
+                    $fail("The database name cannot be one of the reserved names: mysql, mariadb, pgsql, sqlsrv, sqlite, sos, performance_schema, information_schema.");
+                }
+            }],
         ];
     }
-
 }
