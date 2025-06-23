@@ -3,7 +3,17 @@
   "description": "Laravel web installer",
   "license": "MIT",
   "type": "library",
-
+"keywords": [
+    "laravel",
+    "installer",
+    "web installer",
+    "setup",
+    "environment",
+    "database",
+    "migrations",
+    "php",
+    "package"
+  ],
   "authors": [
     {
       "name": "Rowjat Ullah",
