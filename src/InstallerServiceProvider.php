@@ -25,9 +25,14 @@ class InstallerServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
+        $this->mergeConfigFrom(
+            __DIR__.'/config/installer.php','installer'
+        );
         $this->publishFiles();
 
         include __DIR__ . '/routes.php';
+        $this->loadViewsFrom(__DIR__.'/resources/views', 'installer');
+        $this->loadTranslationsFrom(__DIR__.'/lang', 'installer');
     }
 
     /**
@@ -57,8 +62,5 @@ class InstallerServiceProvider extends ServiceProvider
             __DIR__.'/assets' => public_path('vendor/installer'),
         ], 'public');
 
-
-        $this->loadViewsFrom(__DIR__.'/resources/views', 'installer');
-        $this->loadTranslationsFrom(__DIR__.'/lang', 'installer');
     }
 }

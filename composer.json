@@ -1,44 +1,45 @@
 {
-  "name": "rowjat/laravel-installer",
-  "description": "Laravel web installer",
-  "license": "MIT",
-  "type": "library",
-"keywords": [
-    "laravel",
-    "installer",
-    "web installer",
-    "setup",
-    "environment",
-    "database",
-    "migrations",
-    "php",
-    "package"
-  ],
-  "authors": [
-    {
-      "name": "Rowjat Ullah",
-      "email": "rowjat@gmail.com"
-    }
-  ],
-  "require": {
-    "php": "^8.2",
-    "illuminate/support": "^12",
-    "illuminate/console": "^12"
-  },
-  "autoload": {
-    "psr-4": {
-      "Rowjat\\Installer\\": "src/"
+    "name": "rowjat/laravel-installer",
+    "description": "Laravel web installer",
+    "license": "MIT",
+    "type": "library",
+    "keywords": [
+        "laravel",
+        "installer",
+        "laravel installer",
+        "web installer",
+        "setup",
+        "environment",
+        "database",
+        "migrations",
+        "php",
+        "package"
+    ],
+    "authors": [
+        {
+            "name": "Rowjat Ullah",
+            "email": "rowjat@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^8.2",
+        "illuminate/support": "^12",
+        "illuminate/console": "^12"
     },
-    "files": [
-      "src/helpers.php"
-    ]
-  },
-    "extra":{
-        "laravel":{
-            "providers":[
+    "autoload": {
+        "psr-4": {
+            "Rowjat\\Installer\\": "src/"
+        },
+        "files": [
+            "src/helpers.php"
+        ]
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
                 "Rowjat\\Installer\\InstallerServiceProvider"
             ]
         }
     },
-  "minimum-stability": "dev"
+    "minimum-stability": "dev"
 }
